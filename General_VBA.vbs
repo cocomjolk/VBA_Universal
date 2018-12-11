@@ -1,22 +1,47 @@
 
-Sub CopyRange(rng)
 
-    Range(rng).Copy
+Sub Cell_Offset()
+    'Cell_Offset_Right
+    ActiveCell.Offset(, 1).Select
+    'Cell_Offset_Left
+    ActiveCell.Offset(, -1).Select
+    'Cell_Offset_Up
+    ActiveCell.Offset(1,).Select
+    'Cell_Offset_Down
+    ActiveCell.Offset(-1,).Select
+End Sub
+'--------------------------------------------------------------'
+
+Sub Control_Move()
+    'Move to end of column Up
+    Selection.End(xlUp).Select
+    'Move to end of column Down
+    Selection.End(xlDown).Select
+    'Move to end of row Right
+    Selection.End(xlToRight).Select
+    'Move to end of row Left
+    Selection.End(xlToLeft).Select
+End Sub
+'--------------------------------------------------------------'
+
+Sub Change_Column_Width()
+    Columns("A:A").ColumnWidth = 9
+End Sub
+'--------------------------------------------------------------'
+Sub Select_Range(rng)
+
+    ActiveCell.Range(rng).Select
 
 End Sub
 '--------------------------------------------------------------'
 
-Sub Paste(rng)
-
-    Range(rng).Select
-    ActiveSheet.Paste
-
+Sub CopyRange(rng)
+    Range(rng).Copy
 End Sub
 '--------------------------------------------------------------'
 
 Sub CopyPaste()
 
-    'Testing for SN1213'
     'Copying hard coded range and pasting into same sheet'
     Range("B2:H8").Select
     Selection.Copy
@@ -28,21 +53,14 @@ End Sub
 
 sub paste_just_values()
 
-  Range("C3").PasteSpecial xlPasteValues
+  Range("A1").PasteSpecial xlPasteValues
 
 end sub
 '--------------------------------------------------------------'
+Sub Paste(rng)
 
-Sub Select_Range(rng)
-
-    ActiveCell.Range(rng).Select
-
-End Sub
-'--------------------------------------------------------------'
-
-Sub Change_Column_Width()
-
-    Columns("A:A").ColumnWidth = 9
+    Range(rng).Select
+    ActiveSheet.Paste
 
 End Sub
 '--------------------------------------------------------------'
@@ -52,37 +70,6 @@ Sub SaveAs(path)
     ActiveWorkbook.SaveAs fileName:=path
 
 End Sub
-'--------------------------------------------------------------'
-
-Sub ControlUp()
-
-    Selection.End(xlUp).Select
-
-End Sub
-'--------------------------------------------------------------'
-
-Sub ControlDown()
-
-    Selection.End(xlDown).Select
-
-End Sub
-'--------------------------------------------------------------'
-
-Sub ControlRight()
-
-    'move to end of row
-    Selection.End(xlToRight).Select
-
-End Sub
-'--------------------------------------------------------------'
-
-Sub ControlLeft()
-
-    'move to end of row
-    Selection.End(xlToLeft).Select
-
-End Sub
-
 '--------------------------------------------------------------'
 
 Sub copy_paste_to_another_workbook()
@@ -286,16 +273,11 @@ Sub open_powerpoint2()
 End Sub
 '--------------------------------------------------------------'
 
-Sub arr()
-  Dim myMonth(1 to 12) As String
-  myMonth(1)="Jan"
-  myMonth(2)="Feb"
-End Sub
-'--------------------------------------------------------------'
+
 
 Sub array_one_dimension()
 
-  Dim monthArr(1to12) as string
+  Dim monthArr(1 to 12) as string
   monthArr(1) = "Jan"
   monthArr(2) = "Feb"
 
@@ -319,10 +301,13 @@ End Sub
 '--------------------------------------------------------------'
 
 Sub loop_cells_in_range()
+
     Dim cell As Range
+
     For Each cell In ActiveSheet.UsedRange
       'do something
     Next cell
+
 End Sub
 '--------------------------------------------------------------'
 
@@ -420,8 +405,6 @@ Sub ExcelRange_to_PPT_Table()
 
 End Sub
 '--------------------------------------------------------------'
-'--------------------------------------------------------------'
-'--------------------------------------------------------------'
 
 Sub rangeTest()
     'Dim C4 As Integer
@@ -459,8 +442,6 @@ End Sub
 'To find the end of a column of rows can use range("A10","A"& cells(rows.Count,1).end(xlup).row)...'
 'to go from cell "A10" to last row of data in column A'
 
-
-
 Set rng = Range("A:A").Find(what:=Range("B3").Value,LookIn:=xlValues, lookat:=xlWhole)
 range("C3").Value=compid.Offset(,4)
 '--------------------------------------------------------------'
@@ -470,17 +451,20 @@ Sub RefreshAll()
     ActiveWorkbook.RefreshAll
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub FillSeries(rng)
     Range(rng).DataSeries Rowcol:=xlColumns, Type:=xlLinear, Date:=xlDay, _
         Step:=1, Trend:=False
 End Sub
+'--------------------------------------------------------------'
 
 Sub InsertLeft(rng)
 
     Range(rng).Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub WiggleCell()
 
@@ -488,24 +472,28 @@ Sub WiggleCell()
     Selection.End(xlToLeft).Select
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub ClearRange(rng)
 
     Range(rng).Clear
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub DeleteRange(rng)
 
     Range(rng).Delete
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub UnMerge(val)
 
     Range(val).UnMerge
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub Todays_date()
 
@@ -513,6 +501,7 @@ Sub Todays_date()
     ActiveCell.Offset(1, 0).Range("A1").Select
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub Add_To_Date()
 
@@ -522,6 +511,7 @@ Sub Add_To_Date()
     ActiveCell.Offset(1, 0).Range("A1").Select
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub Highlight_Range(rng)
 
@@ -534,6 +524,7 @@ Sub Highlight_Range(rng)
     End With
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub DragDown(rng1, rng2)
 
@@ -546,6 +537,7 @@ Sub DragDown(rng1, rng2)
         xlFillDefault
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub SaveAs_Xlsb(path As String, Optional format As Variant = 51)
 
@@ -554,24 +546,28 @@ Sub SaveAs_Xlsb(path As String, Optional format As Variant = 51)
     Application.DisplayAlerts = True
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub FilterOr(val1, val2)
 
    ActiveSheet.Range("$A$1").AutoFilter field:=ActiveCell.Column, Criteria1:=val1 _
        , Operator:=xlOr, Criteria2:=val2
 End Sub
+'--------------------------------------------------------------'
 
 Sub AutomaticCalculations()
 
     Application.Calculation = xlAutomatic
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub ManualCalculations()
 
     Application.Calculation = xlManual
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub ClearFilters()
 
@@ -579,12 +575,15 @@ Sub ClearFilters()
 
 End Sub
 
+'--------------------------------------------------------------'
+
 Sub FilterColumn(criteria)
 
     ActiveSheet.Range(ActiveCell.Address).AutoFilter field:=13, Criteria1:= _
         criteria, Operator:=xlAnd
 
 End Sub
+'--------------------------------------------------------------'
 
 Sub FilterPivotField(table, field, value)
 
@@ -594,6 +593,7 @@ Sub FilterPivotField(table, field, value)
     ActiveSheet.PivotTables("PivotTable2").PivotFields("OC_Type").CurrentPage = _
         value
 End Sub
+'--------------------------------------------------------------'
 
 Sub SortDescending(rng)
     ActiveWorkbook.Worksheets("Data").Sort.SortFields.Clear
@@ -608,8 +608,8 @@ Sub SortDescending(rng)
         .Apply
     End With
 End Sub
-
 '--------------------------------------------------------------'
+
 Sub FindFileName()
 
     Dim strFileName As String
@@ -653,6 +653,7 @@ Sub FindFileName()
 End Sub
 
 '--------------------------------------------------------------'
+
 Function FindFileName()
 
     Dim strFileName As String
@@ -680,13 +681,97 @@ Function FindFileName()
         intFoundFiles = intFoundFiles + 1
         strFileName = Dir
     Loop
-    
+
 End Function
 '--------------------------------------------------------------'
+
+Sub Dictionary_Late_Binding()
+    'In technical terms Early binding means we decide exactly
+    'what we are using up front. With Late binding this decision
+    'is made when the application is running. In simple terms the difference is.
+    '1. Early binding requires a reference. Late binding doesn’t.
+    '2. Early binding allows access to *Intellisense. Late binding doesn’t.
+    '3. Early binding may require you to manually add the Reference to the “Microsoft Scripting Runtime” for some users.
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+
+End Sub
+'--------------------------------------------------------------'
+
+Sub Declare_A_Dictionary()
+
+    Dim dict As New Scripting.Dictionary
+    'Or use, both do the same thing'
+    Dim dict As Scripting.Dictionary
+    Set dict = New Scripting.Dictionary
+
+End Sub
+'--------------------------------------------------------------'
+
+Sub Sub_name()
+
+    Dim dict As New Scripting.Dictionary
+
+    ' Add to fruit to Dictionary
+    dict.Add key:="Apple", Item:=51
+    dict.Add key:="Peach", Item:=34
+    dict.Add key:="Plum", Item:=43
+
+    Dim sFruit As String
+    ' Ask user to enter fruit
+    sFruit = InputBox("Please enter the name of a fruit")
+
+    If dict.Exists(sFruit) Then
+      MsgBox sFruit & " exists and has value " & dict(sFruit)
+    Else
+      MsgBox sFruit & " does not exist."
+    End If
+
+    Set dict = Nothing
+
+End Sub
+'--------------------------------------------------------------'
+
+Sub Sub_name()
+    Dim dict As New Scripting.Dictionary
+
+    ' Add some items
+    dict.Add "Orange", 55
+    dict.Add "Peach", 55
+    dict.Add "Plum", 55
+    Debug.Print "The number of items is " & dict.Count
+
+    ' Remove one item
+    dict.Remove "Orange"
+    Debug.Print "The number of items is " & dict.Count
+
+    ' Remove all items
+    dict.RemoveAll
+    Debug.Print "The number of items is " & dict.Count
+End Sub
+'--------------------------------------------------------------'
+Sub Sub_name()
+    'code here'
+End Sub
+
+Sub WriteToArr_ReadFromArr()
+
+    i = 1
+    Set ExceptionList = New Dictionary
+
+    Do While i < 5
+        'Add to array
+           ExceptionList.Add "PNABC" & i, "Some value __ " & i
+        i = i + 1
+    Loop
+
+    For Each exceptionPart In ExceptionList.Keys()
+        Debug.Print exceptionPart, ExceptionList.Item(exceptionPart)
+    Next
+
+End Sub
 '--------------------------------------------------------------'
 '--------------------------------------------------------------'
 '--------------------------------------------------------------'
 '--------------------------------------------------------------'
-'--------------------------------------------------------------'
-'--------------------------------------------------------------'
-'--------------------------------------------------------------'
+
